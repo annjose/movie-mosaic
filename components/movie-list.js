@@ -67,7 +67,7 @@ export default function MovieList() {
         fetchMovies(pageNumber);
     }
 
-    const PrevButton = (
+    const PrevPageButton = (
         <button className="rounded-lg border border-gray-300 bg-gray-100 px-5 py-4 mr-4"
             disabled={currentPageNumber - 1 > 0 ? false : true}
             onClick={(e) => { navigateNextPrev(e, 'prev') }}
@@ -81,9 +81,11 @@ export default function MovieList() {
         </button>
     );
 
-    const CurrentPageInfo = <span>You are on <strong>page #{currentPageNumber}</strong> of {totalPages}</span>;
+    const CurrentPageInfo = (
+        <span>You are on page <strong>#{currentPageNumber}</strong> of <strong>{totalPages}</strong></span>
+    );
 
-    const NextButton = (
+    const NextPageButton = (
         <button
             className="rounded-lg border border-gray-300 bg-gray-100 px-5 py-4 ml-4"
             disabled={currentPageNumber < totalPages ? false : true}
@@ -100,12 +102,12 @@ export default function MovieList() {
 
     const NextPrevPageNav = (
         <div className="mb-8 text-center lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-            {PrevButton}
+            {PrevPageButton}
             {CurrentPageInfo}
-            {NextButton}
+            {NextPageButton}
         </div>
     );
-    
+
     return (
         <>
             <h2 className="mb-3 text-2xl font-semibold">Top Rated Movies</h2>
